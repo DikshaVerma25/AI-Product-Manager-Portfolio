@@ -70,13 +70,9 @@ function animateCount(el) {
     if (prog < 1) requestAnimationFrame(step);
   })(start);
 }
-
 const countObs = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting) { animateCount(e.target); countObs.unobserve(e.target); }
-  });
+  entries.forEach(e => { if (e.isIntersecting) { animateCount(e.target); countObs.unobserve(e.target); } });
 }, { threshold: 0.6 });
-
 document.querySelectorAll('.count-up').forEach(el => countObs.observe(el));
 
 /* ════════════════════════════════════════
@@ -84,38 +80,44 @@ document.querySelectorAll('.count-up').forEach(el => countObs.observe(el));
 ════════════════════════════════════════ */
 (function initTimeline() {
   const track    = document.getElementById('tl-track');
-  const overflow = document.getElementById('tl-overflow');
+  const viewport = document.getElementById('tl-viewport');
   const btnLeft  = document.getElementById('tl-left');
   const btnRight = document.getElementById('tl-right');
-  if (!track || !overflow || !btnLeft || !btnRight) return;
+  if (!track || !viewport || !btnLeft || !btnRight) return;
 
-  const NODE_W = 216; // px per node (width + gap)
+  const NODE_W = 230;
   let pos = 0;
 
-  function clamp(val) {
-    const max = Math.max(0, track.scrollWidth - overflow.clientWidth);
-    return Math.max(0, Math.min(val, max));
+  function getMax() {
+    return Math.max(0, track.scrollWidth - viewport.clientWidth);
   }
-
   function render() {
-    const max = Math.max(0, track.scrollWidth - overflow.clientWidth);
+    const max = getMax();
+    pos = Math.max(0, Math.min(pos, max));
     track.style.transform = `translateX(${-pos}px)`;
     btnLeft.disabled  = pos <= 0;
     btnRight.disabled = pos >= max;
   }
 
-  btnLeft.addEventListener('click',  () => { pos = clamp(pos - NODE_W); render(); });
-  btnRight.addEventListener('click', () => { pos = clamp(pos + NODE_W); render(); });
+  btnLeft.addEventListener('click',  () => { pos -= NODE_W; render(); });
+  btnRight.addEventListener('click', () => { pos += NODE_W; render(); });
 
-  // drag / touch scroll
+  // Touch / mouse drag
   let startX = 0, startPos = 0, dragging = false;
+  viewport.addEventListener('mousedown', e => {
+    dragging = true; startX = e.clientX; startPos = pos;
+    viewport.style.cursor = 'grabbing';
+    e.preventDefault();
+  });
+  window.addEventListener('mousemove', e => {
+    if (!dragging) return;
+    pos = startPos - (e.clientX - startX);
+    render();
+  });
+  window.addEventListener('mouseup', () => { dragging = false; viewport.style.cursor = ''; });
 
-  overflow.addEventListener('mousedown',  e => { dragging = true; startX = e.clientX; startPos = pos; overflow.style.cursor = 'grabbing'; });
-  window.addEventListener('mousemove',    e => { if (!dragging) return; pos = clamp(startPos - (e.clientX - startX)); render(); });
-  window.addEventListener('mouseup',      ()  => { dragging = false; overflow.style.cursor = ''; });
-
-  overflow.addEventListener('touchstart', e => { startX = e.touches[0].clientX; startPos = pos; }, { passive: true });
-  overflow.addEventListener('touchmove',  e => { pos = clamp(startPos - (e.touches[0].clientX - startX)); render(); }, { passive: true });
+  viewport.addEventListener('touchstart', e => { startX = e.touches[0].clientX; startPos = pos; }, { passive: true });
+  viewport.addEventListener('touchmove',  e => { pos = startPos - (e.touches[0].clientX - startX); render(); }, { passive: true });
 
   window.addEventListener('resize', render);
   render();
@@ -124,9 +126,9 @@ document.querySelectorAll('.count-up').forEach(el => countObs.observe(el));
 /* ════════════════════════════════════════
    RESUME MODAL
 ════════════════════════════════════════ */
-const modal     = document.getElementById('resume-modal');
-const openBtns  = document.querySelectorAll('[data-open-resume]');
-const closeBtns = document.querySelectorAll('[data-close-resume]');
+const modal    = document.getElementById('resume-modal');
+const openBtns = document.querySelectorAll('[data-open-resume]');
+const closeBtns= document.querySelectorAll('[data-close-resume]');
 
 function openModal()  { modal.classList.add('open'); document.body.style.overflow = 'hidden'; }
 function closeModal() { modal.classList.remove('open'); document.body.style.overflow = ''; }
@@ -141,49 +143,65 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal()
 ════════════════════════════════════════ */
 document.querySelectorAll('a[href^="#"]').forEach(a => {
   a.addEventListener('click', e => {
-    const target = document.querySelector(a.getAttribute('href'));
-    if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
+    const t = document.querySelector(a.getAttribute('href'));
+    if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth' }); }
   });
 });
 
 /* ════════════════════════════════════════
-   FLOATING PETALS (subtle background)
+   FLOATING BACKGROUND ICONS
 ════════════════════════════════════════ */
-(function spawnPetals() {
-  const container = document.querySelector('.bg-elements');
+(function initBgIcons() {
+  const container = document.getElementById('bg-icons');
   if (!container) return;
 
-  const colors = ['#10b981','#f59e0b','#8b5cf6','#f97316','#14b8a6'];
+  // x/y in vw/vh, size in px, opacity on white bg
+  const icons = [
+    { i:'fa-robot',         c:'#7c3aed', s:62, x:3,  y:10, a:'floatA', d:8,   dl:0    },
+    { i:'fa-brain',         c:'#d97706', s:50, x:88, y:8,  a:'floatB', d:10,  dl:-1.5 },
+    { i:'fa-microchip',     c:'#047857', s:54, x:20, y:72, a:'floatC', d:9,   dl:-3   },
+    { i:'fa-database',      c:'#0369a1', s:46, x:80, y:62, a:'floatA', d:12,  dl:-0.5 },
+    { i:'fa-code-branch',   c:'#b91c1c', s:56, x:47, y:4,  a:'floatD', d:7,   dl:-2   },
+    { i:'fa-chart-line',    c:'#7c3aed', s:42, x:14, y:38, a:'floatB', d:11,  dl:-4   },
+    { i:'fa-leaf',          c:'#047857', s:66, x:85, y:42, a:'floatA', d:9,   dl:-1   },
+    { i:'fa-lightbulb',     c:'#d97706', s:50, x:62, y:82, a:'floatC', d:8,   dl:-6   },
+    { i:'fa-rocket',        c:'#7c3aed', s:54, x:35, y:88, a:'floatB', d:13,  dl:-2.5 },
+    { i:'fa-cog',           c:'#94a3b8', s:44, x:72, y:18, a:'floatD', d:15,  dl:-3.5 },
+    { i:'fa-layer-group',   c:'#0369a1', s:42, x:8,  y:55, a:'floatA', d:10,  dl:-5   },
+    { i:'fa-seedling',      c:'#047857', s:56, x:52, y:50, a:'floatC', d:7.5, dl:-0.5 },
+    { i:'fa-star',          c:'#d97706', s:38, x:93, y:78, a:'floatB', d:9,   dl:-7   },
+    { i:'fa-infinity',      c:'#7c3aed', s:62, x:28, y:22, a:'floatA', d:11,  dl:-1.5 },
+    { i:'fa-network-wired', c:'#0369a1', s:46, x:60, y:28, a:'floatD', d:8,   dl:-4.5 },
+    { i:'fa-bolt',          c:'#b91c1c', s:40, x:2,  y:84, a:'floatC', d:12,  dl:-2   },
+  ];
 
-  function createPetal() {
+  icons.forEach(def => {
     const el = document.createElement('div');
-    el.style.cssText = `
-      position:absolute;
-      width:${6 + Math.random() * 8}px;
-      height:${6 + Math.random() * 8}px;
-      border-radius:50% 0 50% 0;
-      background:${colors[Math.floor(Math.random() * colors.length)]};
-      opacity:0;
-      left:${Math.random() * 100}%;
-      bottom:${-10 + Math.random() * 20}px;
-      transform:rotate(${Math.random() * 360}deg);
-      pointer-events:none;
-    `;
+    el.innerHTML = `<i class="fas ${def.i}"></i>`;
+    Object.assign(el.style, {
+      position:       'fixed',
+      left:           `${def.x}vw`,
+      top:            `${def.y}vh`,
+      fontSize:       `${def.s}px`,
+      color:          def.c,
+      opacity:        '0.048',
+      pointerEvents:  'none',
+      zIndex:         '0',
+      animation:      `${def.a} ${def.d}s ease-in-out infinite`,
+      animationDelay: `${def.dl}s`,
+      lineHeight:     '1',
+    });
     container.appendChild(el);
-
-    const dur = 8000 + Math.random() * 12000;
-    const delay = Math.random() * 6000;
-
-    setTimeout(() => {
-      el.style.transition = `transform ${dur}ms linear, bottom ${dur}ms ease-in, opacity ${dur * 0.15}ms ease`;
-      el.style.opacity = String(0.06 + Math.random() * 0.1);
-      el.style.bottom = `${80 + Math.random() * 40}vh`;
-      el.style.transform = `rotate(${Math.random() * 720}deg) translateX(${(Math.random() - 0.5) * 100}px)`;
-      setTimeout(() => { el.style.opacity = '0'; setTimeout(() => el.remove(), 1500); }, dur * 0.7);
-    }, delay);
-  }
-
-  // Spawn initial batch, then ongoing
-  for (let i = 0; i < 8; i++) setTimeout(createPetal, i * 800);
-  setInterval(createPetal, 3500);
+  });
 })();
+
+/* ════════════════════════════════════════
+   COMPANY LOGO FALLBACK
+════════════════════════════════════════ */
+document.querySelectorAll('.tl-logo-img').forEach(img => {
+  img.addEventListener('error', function () {
+    this.style.display = 'none';
+    const fb = this.nextElementSibling;
+    if (fb) fb.style.display = 'flex';
+  });
+});

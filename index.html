@@ -18,24 +18,8 @@
 </head>
 <body>
 
-<!-- ══════════════════════════════════════
-     FLOATING BACKGROUND ELEMENTS
-══════════════════════════════════════ -->
-<div class="bg-elements" aria-hidden="true">
-  <div class="bg-grid"></div>
-  <div class="bg-blob bg-blob-1"></div>
-  <div class="bg-blob bg-blob-2"></div>
-  <div class="bg-blob bg-blob-3"></div>
-  <div class="bg-blob bg-blob-4"></div>
-  <div class="bg-leaf bg-leaf-1"></div>
-  <div class="bg-leaf bg-leaf-2"></div>
-  <div class="bg-leaf bg-leaf-3"></div>
-  <div class="bg-leaf bg-leaf-4"></div>
-  <div class="bg-leaf bg-leaf-5"></div>
-  <div class="bg-leaf bg-leaf-6"></div>
-  <div class="bg-ring bg-ring-1"></div>
-  <div class="bg-ring bg-ring-2"></div>
-</div>
+<!-- Floating background icons (populated by JS) -->
+<div id="bg-icons" aria-hidden="true"></div>
 
 <!-- ══════════════════════════════════════
      NAV
@@ -50,7 +34,7 @@
     <li><a href="#contact">Contact</a></li>
     <li>
       <button class="btn-resume-nav" data-open-resume>
-        <i class="fas fa-file-alt"></i> View Resume
+        <i class="fas fa-file-alt"></i> Resume
       </button>
     </li>
   </ul>
@@ -61,7 +45,6 @@
 ══════════════════════════════════════ -->
 <section id="hero">
   <div class="hero-gradient"></div>
-
   <div class="hero-inner">
 
     <div class="hero-badge">
@@ -86,7 +69,7 @@
       <a href="#experience" class="btn-primary">
         <i class="fas fa-rocket"></i> See My Work
       </a>
-      <button class="btn-secondary" data-open-resume style="font-family:inherit;font-size:.9rem;">
+      <button class="btn-secondary" data-open-resume>
         <i class="fas fa-file-alt"></i> View Resume
       </button>
       <a href="#contact" class="btn-secondary">
@@ -95,7 +78,7 @@
     </div>
 
     <div class="hero-socials">
-      <a href="mailto:dikshaverma235@gmail.com" title="Email" rel="noopener">
+      <a href="mailto:dikshaverma235@gmail.com" title="Email">
         <i class="fas fa-envelope"></i>
       </a>
       <a href="https://linkedin.com/in/dikshaverma25" target="_blank" rel="noopener" title="LinkedIn">
@@ -121,7 +104,7 @@
       <span class="float-tag">Data Governance</span>
     </div>
 
-  </div><!-- /hero-inner -->
+  </div>
 
   <div class="scroll-hint">
     <span>scroll</span>
@@ -134,42 +117,26 @@
 ══════════════════════════════════════ -->
 <div id="impact">
   <div class="impact-grid">
-
     <div class="impact-card reveal">
-      <div class="impact-num">
-        <span class="count-up" data-target="27">0</span><span class="impact-suffix">%</span>
-      </div>
+      <div class="impact-num"><span class="count-up" data-target="27">0</span><span class="impact-suffix">%</span></div>
       <div class="impact-label">Enterprise AI Adoption<br/>Growth @ BMW</div>
     </div>
-
     <div class="impact-card reveal reveal-delay-1">
-      <div class="impact-num">
-        <span class="count-up" data-target="55">0</span><span class="impact-suffix">%</span>
-      </div>
+      <div class="impact-num"><span class="count-up" data-target="55">0</span><span class="impact-suffix">%</span></div>
       <div class="impact-label">Infrastructure Cost Cut<br/>(zero-downtime rollout)</div>
     </div>
-
     <div class="impact-card reveal reveal-delay-2">
-      <div class="impact-num">
-        <span class="count-up" data-target="10">0</span><span class="impact-suffix">K+</span>
-      </div>
+      <div class="impact-num"><span class="count-up" data-target="10">0</span><span class="impact-suffix">K+</span></div>
       <div class="impact-label">Enterprise Users on<br/>GenAI Copilot</div>
     </div>
-
     <div class="impact-card reveal reveal-delay-3">
-      <div class="impact-num">
-        <span class="count-up" data-target="34">0</span><span class="impact-suffix">%</span>
-      </div>
-      <div class="impact-label">Support Query Drop<br/>via NLP Chatbot</div>
+      <div class="impact-num"><span class="count-up" data-target="34">0</span><span class="impact-suffix">%</span></div>
+      <div class="impact-label">Support Queries Cut<br/>via NLP Chatbot</div>
     </div>
-
     <div class="impact-card reveal reveal-delay-4">
-      <div class="impact-num">
-        <span class="count-up" data-target="5">0</span><span class="impact-suffix">+</span>
-      </div>
+      <div class="impact-num"><span class="count-up" data-target="5">0</span><span class="impact-suffix">+</span></div>
       <div class="impact-label">Years Shipping AI<br/>Products at Scale</div>
     </div>
-
   </div>
 </div>
 
@@ -180,67 +147,106 @@
   <div class="section-header reveal">
     <span class="section-tag">// work experience</span>
     <h2 class="section-title">The Journey So Far</h2>
-    <p class="section-sub">From writing the code to owning the roadmap. Chronologically. Measurably.</p>
+    <p class="section-sub">From writing the code to owning the roadmap — newest to oldest.</p>
   </div>
 
-  <div class="tl-wrapper">
-
-    <button class="tl-arrow tl-arrow-left" id="tl-left" aria-label="Scroll left" disabled>
+  <div class="tl-outer">
+    <button class="tl-arrow tl-arrow-left" id="tl-left" aria-label="Previous" disabled>
       <i class="fas fa-chevron-left"></i>
     </button>
 
-    <div class="tl-overflow" id="tl-overflow">
+    <!-- Fixed-height viewport clips horizontal overflow only -->
+    <div class="tl-viewport" id="tl-viewport">
       <div class="tl-track" id="tl-track">
 
-        <!-- 1 · Compport -->
+        <!-- Animated rainbow axis line — top: 273px (32+185+20+36) -->
+        <div class="tl-axis-line"></div>
+
+        <!-- ① BMW — Technical AI PM (CURRENT) -->
+        <div class="tl-node current">
+          <div class="tl-card">
+            <div class="tl-now-badge"><span class="tl-now-dot"></span> Current</div>
+            <div class="tl-date"><i class="fas fa-calendar-alt" style="font-size:.6rem;margin-right:.3rem;"></i>Feb 2024 – Present</div>
+            <div class="tl-company">BMW Group</div>
+            <div class="tl-role">Technical AI Product Manager</div>
+            <div class="tl-tags">
+              <span class="tl-tag">GenAI Copilot</span>
+              <span class="tl-tag">RAG</span>
+              <span class="tl-tag">AWS</span>
+              <span class="tl-tag">OKRs</span>
+            </div>
+          </div>
+          <div class="tl-stem"></div>
+          <div class="tl-dot">
+            <img
+              src="https://logo.clearbit.com/bmwgroup.com"
+              alt="BMW Group"
+              class="tl-logo-img"
+              loading="lazy"
+            />
+            <div class="tl-logo-fallback fb-bmw" style="display:none;">
+              <span>BMW</span><span style="font-size:.48rem;opacity:.8;">Group</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ② BMW — Full Stack Engineer -->
         <div class="tl-node">
           <div class="tl-card">
-            <div class="tl-date"><i class="fas fa-calendar-alt" style="font-size:.6rem;margin-right:.3rem;opacity:.6;"></i>Jan 2020 – Jul 2021</div>
-            <div class="tl-company">Compport</div>
-            <div class="tl-role">Software Engineer → Product Contributor</div>
+            <div class="tl-date"><i class="fas fa-calendar-alt" style="font-size:.6rem;margin-right:.3rem;"></i>Aug 2023 – Feb 2024</div>
+            <div class="tl-company">BMW Group</div>
+            <div class="tl-role">Full Stack Engineer</div>
             <div class="tl-tags">
-              <span class="tl-tag">NLP Chatbot</span>
-              <span class="tl-tag">Python</span>
+              <span class="tl-tag">SPARQL</span>
+              <span class="tl-tag">Airflow</span>
+              <span class="tl-tag">React</span>
+              <span class="tl-tag">Neptune</span>
+            </div>
+          </div>
+          <div class="tl-stem"></div>
+          <div class="tl-dot">
+            <img
+              src="https://logo.clearbit.com/bmwgroup.com"
+              alt="BMW Group"
+              class="tl-logo-img"
+              loading="lazy"
+            />
+            <div class="tl-logo-fallback fb-bmw" style="display:none;">
+              <span>BMW</span><span style="font-size:.48rem;opacity:.8;">Group</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ③ University of Florida — Research Product Engineer -->
+        <div class="tl-node">
+          <div class="tl-card">
+            <div class="tl-date"><i class="fas fa-calendar-alt" style="font-size:.6rem;margin-right:.3rem;"></i>Mar 2022 – Aug 2023</div>
+            <div class="tl-company">University of Florida</div>
+            <div class="tl-role">Research Product Engineer</div>
+            <div class="tl-tags">
+              <span class="tl-tag">0→1 Product</span>
+              <span class="tl-tag">AI-assist</span>
               <span class="tl-tag">React</span>
             </div>
           </div>
-          <div class="tl-connector">
-            <div class="tl-stem"></div>
-            <div class="tl-dot">
-              <div class="tl-logo logo-comp">
-                <span>CP</span>
-                <span class="logo-sub">Tech</span>
-              </div>
+          <div class="tl-stem"></div>
+          <div class="tl-dot">
+            <img
+              src="https://logo.clearbit.com/ufl.edu"
+              alt="University of Florida"
+              class="tl-logo-img"
+              loading="lazy"
+            />
+            <div class="tl-logo-fallback fb-uf" style="display:none;">
+              <span>UF</span><span style="font-size:.48rem;opacity:.8;">Gators</span>
             </div>
           </div>
         </div>
 
-        <!-- 2 · UF Observability -->
+        <!-- ④ Radian Group -->
         <div class="tl-node">
           <div class="tl-card">
-            <div class="tl-date"><i class="fas fa-calendar-alt" style="font-size:.6rem;margin-right:.3rem;opacity:.6;"></i>Jan 2022 – May 2022</div>
-            <div class="tl-company">University of Florida</div>
-            <div class="tl-role">Enterprise SWE — Observability</div>
-            <div class="tl-tags">
-              <span class="tl-tag">OpenTelemetry</span>
-              <span class="tl-tag">SLO/SLA</span>
-            </div>
-          </div>
-          <div class="tl-connector">
-            <div class="tl-stem"></div>
-            <div class="tl-dot">
-              <div class="tl-logo logo-uf">
-                <span>UF</span>
-                <span class="logo-sub">Research</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 3 · Radian Group -->
-        <div class="tl-node">
-          <div class="tl-card">
-            <div class="tl-date"><i class="fas fa-calendar-alt" style="font-size:.6rem;margin-right:.3rem;opacity:.6;"></i>May 2022 – Dec 2022</div>
+            <div class="tl-date"><i class="fas fa-calendar-alt" style="font-size:.6rem;margin-right:.3rem;"></i>May 2022 – Dec 2022</div>
             <div class="tl-company">Radian Group</div>
             <div class="tl-role">Software Developer Co-op</div>
             <div class="tl-tags">
@@ -249,97 +255,82 @@
               <span class="tl-tag">TypeScript</span>
             </div>
           </div>
-          <div class="tl-connector">
-            <div class="tl-stem"></div>
-            <div class="tl-dot">
-              <div class="tl-logo logo-radian">
-                <span>RG</span>
-                <span class="logo-sub">FinTech</span>
-              </div>
+          <div class="tl-stem"></div>
+          <div class="tl-dot">
+            <img
+              src="https://logo.clearbit.com/radian.com"
+              alt="Radian Group"
+              class="tl-logo-img"
+              loading="lazy"
+            />
+            <div class="tl-logo-fallback fb-radian" style="display:none;">
+              <span>RG</span><span style="font-size:.48rem;opacity:.8;">Radian</span>
             </div>
           </div>
         </div>
 
-        <!-- 4 · UF Research PE -->
+        <!-- ⑤ University of Florida — Observability -->
         <div class="tl-node">
           <div class="tl-card">
-            <div class="tl-date"><i class="fas fa-calendar-alt" style="font-size:.6rem;margin-right:.3rem;opacity:.6;"></i>Mar 2022 – Aug 2023</div>
+            <div class="tl-date"><i class="fas fa-calendar-alt" style="font-size:.6rem;margin-right:.3rem;"></i>Jan 2022 – May 2022</div>
             <div class="tl-company">University of Florida</div>
-            <div class="tl-role">Research Product Engineer</div>
+            <div class="tl-role">Enterprise SWE — Observability</div>
             <div class="tl-tags">
-              <span class="tl-tag">0→1 Product</span>
-              <span class="tl-tag">AI-assisted</span>
+              <span class="tl-tag">OpenTelemetry</span>
+              <span class="tl-tag">SLO/SLA</span>
+            </div>
+          </div>
+          <div class="tl-stem"></div>
+          <div class="tl-dot">
+            <img
+              src="https://logo.clearbit.com/ufl.edu"
+              alt="University of Florida"
+              class="tl-logo-img"
+              loading="lazy"
+            />
+            <div class="tl-logo-fallback fb-uf" style="display:none;">
+              <span>UF</span><span style="font-size:.48rem;opacity:.8;">Gators</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ⑥ Compport -->
+        <div class="tl-node">
+          <div class="tl-card">
+            <div class="tl-date"><i class="fas fa-calendar-alt" style="font-size:.6rem;margin-right:.3rem;"></i>Jan 2020 – Jul 2021</div>
+            <div class="tl-company">Compport</div>
+            <div class="tl-role">Software Engineer → Product Contributor</div>
+            <div class="tl-tags">
+              <span class="tl-tag">NLP Chatbot</span>
+              <span class="tl-tag">Python</span>
               <span class="tl-tag">React</span>
             </div>
           </div>
-          <div class="tl-connector">
-            <div class="tl-stem"></div>
-            <div class="tl-dot">
-              <div class="tl-logo logo-uf">
-                <span>UF</span>
-                <span class="logo-sub">Product</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 5 · BMW FSE -->
-        <div class="tl-node">
-          <div class="tl-card">
-            <div class="tl-date"><i class="fas fa-calendar-alt" style="font-size:.6rem;margin-right:.3rem;opacity:.6;"></i>Aug 2023 – Feb 2024</div>
-            <div class="tl-company">BMW Group</div>
-            <div class="tl-role">Full Stack Engineer</div>
-            <div class="tl-tags">
-              <span class="tl-tag">SPARQL</span>
-              <span class="tl-tag">Airflow</span>
-              <span class="tl-tag">Neptune</span>
-            </div>
-          </div>
-          <div class="tl-connector">
-            <div class="tl-stem"></div>
-            <div class="tl-dot">
-              <div class="tl-logo logo-bmw">
-                <span>BMW</span>
-                <span class="logo-sub">Group</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 6 · BMW AI PM (CURRENT) -->
-        <div class="tl-node current">
-          <div class="tl-card">
-            <div class="tl-now-badge">● Now</div>
-            <div class="tl-date"><i class="fas fa-calendar-alt" style="font-size:.6rem;margin-right:.3rem;opacity:.6;"></i>Feb 2024 – Present</div>
-            <div class="tl-company">BMW Group</div>
-            <div class="tl-role">Technical AI Product Manager</div>
-            <div class="tl-tags">
-              <span class="tl-tag">GenAI</span>
-              <span class="tl-tag">RAG</span>
-              <span class="tl-tag">AWS</span>
-              <span class="tl-tag">OKRs</span>
-            </div>
-          </div>
-          <div class="tl-connector">
-            <div class="tl-stem"></div>
-            <div class="tl-dot">
-              <div class="tl-logo logo-bmw">
-                <span>BMW</span>
-                <span class="logo-sub">AI PM</span>
-              </div>
+          <div class="tl-stem"></div>
+          <div class="tl-dot">
+            <img
+              src="https://logo.clearbit.com/compport.com"
+              alt="Compport"
+              class="tl-logo-img"
+              loading="lazy"
+            />
+            <div class="tl-logo-fallback fb-comp" style="display:none;">
+              <span>CP</span><span style="font-size:.48rem;opacity:.8;">Compport</span>
             </div>
           </div>
         </div>
 
       </div><!-- /tl-track -->
-    </div><!-- /tl-overflow -->
+    </div><!-- /tl-viewport -->
 
-    <button class="tl-arrow tl-arrow-right" id="tl-right" aria-label="Scroll right">
+    <button class="tl-arrow tl-arrow-right" id="tl-right" aria-label="Next">
       <i class="fas fa-chevron-right"></i>
     </button>
-
-  </div><!-- /tl-wrapper -->
-  <p class="tl-hint reveal"><i class="fas fa-hand-pointer" style="margin-right:.4rem;"></i>Drag or use arrows to explore — oldest to newest, left to right</p>
+  </div>
+  <p class="tl-hint reveal">
+    <i class="fas fa-hand-pointer" style="margin-right:.4rem;"></i>
+    Drag or use arrows &nbsp;·&nbsp; Newest to oldest, left to right
+  </p>
 </section>
 
 <!-- ══════════════════════════════════════
@@ -347,13 +338,12 @@
 ══════════════════════════════════════ -->
 <section id="skills">
   <div class="section-header reveal">
-    <span class="section-tag">// skills & tools</span>
+    <span class="section-tag">// skills &amp; tools</span>
     <h2 class="section-title">The Full Stack,<br/>From Model to Roadmap</h2>
     <p class="section-sub">Hands-on across the entire product lifecycle — from LLM evaluation to go-to-market.</p>
   </div>
 
   <div class="skills-grid">
-
     <div class="skill-card reveal">
       <div class="skill-card-header">
         <div class="skill-icon ic-violet"><i class="fas fa-brain"></i></div>
@@ -380,7 +370,7 @@
       </div>
       <div class="skill-tags">
         <span class="s-tag t-gold">Roadmapping</span>
-        <span class="s-tag t-gold">RICE/ICE Prioritization</span>
+        <span class="s-tag t-gold">RICE / ICE</span>
         <span class="s-tag t-gold">OKRs / KPIs</span>
         <span class="s-tag t-gold">Agile / Scrum</span>
         <span class="s-tag t-gold">Product Discovery</span>
@@ -445,7 +435,6 @@
         <span class="s-tag t-sky">Stripe</span>
       </div>
     </div>
-
   </div>
 </section>
 
@@ -484,7 +473,7 @@
 </section>
 
 <!-- ══════════════════════════════════════
-     ABOUT ME  (moved to near end)
+     ABOUT ME  (near end)
 ══════════════════════════════════════ -->
 <section id="about">
   <div class="section-header reveal">
@@ -499,28 +488,28 @@
         I'm an <strong>AI-native Technical Product Manager</strong> with 5+ years spanning full-stack engineering, data platform ownership, and enterprise AI strategy. Currently at <strong>BMW Group</strong>, where I own the end-to-end roadmap for a GenAI copilot serving <strong>10,000+ business users</strong>.
       </p>
       <p>
-        My superpower? I've <em>actually written the code</em> — SPARQL queries, React dashboards, Python pipelines, distributed tracing systems — so when I walk into a sprint planning, a model evaluation session, or an executive review, I can credibly bridge both worlds without losing anyone along the way.
+        My superpower? I've <em>actually written the code</em> — SPARQL queries, React dashboards, Python pipelines, distributed tracing systems — so when I walk into a sprint review, a model eval session, or a C-suite roadmap presentation, I can credibly bridge both worlds without losing anyone along the way.
       </p>
       <p>
-        My journey started in <strong>Bhopal, India</strong>, where I built my first NLP chatbot and fell in love with the idea of machines that understand people. That love took me to the <strong>University of Florida</strong>, through a <strong>Philadelphia fintech</strong>, and eventually to <strong>BMW's enterprise AI team</strong>.
+        My journey started in <strong>Bhopal, India</strong>, where I built my first NLP chatbot and fell in love with the idea of machines that understand people. That curiosity took me to the <strong>University of Florida</strong>, through a <strong>Philadelphia fintech</strong>, and eventually to <strong>BMW's enterprise AI team</strong>.
       </p>
       <p>
-        Off the clock, you'll find me chasing sunsets, exploring trails, collecting houseplants I'm convinced I can keep alive, and occasionally staring too long at a beautifully structured data model.
+        Off the clock, you'll find me chasing sunsets on hiking trails, nurturing a small jungle of houseplants, and occasionally staring a bit too long at a beautifully modeled dataset.
       </p>
-      <div class="about-contact-row">
-        <a href="mailto:dikshaverma235@gmail.com" class="about-contact-chip">
-          <i class="fas fa-envelope" style="color:var(--emerald);"></i> dikshaverma235@gmail.com
+      <div class="about-chips">
+        <a href="mailto:dikshaverma235@gmail.com" class="about-chip">
+          <i class="fas fa-envelope" style="color:var(--violet);"></i> dikshaverma235@gmail.com
         </a>
-        <a href="tel:+13528717492" class="about-contact-chip">
-          <i class="fas fa-phone" style="color:var(--gold);"></i> +1 (352) 871-7492
+        <a href="tel:+13528717492" class="about-chip">
+          <i class="fas fa-phone" style="color:var(--gold-lt);"></i> +1 (352) 871-7492
         </a>
-        <span class="about-contact-chip">
-          <i class="fas fa-map-marker-alt" style="color:var(--coral);"></i> SF, California
+        <span class="about-chip">
+          <i class="fas fa-map-marker-alt" style="color:var(--coral-lt);"></i> SF, California
         </span>
       </div>
     </div>
 
-    <div class="about-cards reveal reveal-delay-1">
+    <div class="about-cards-col reveal reveal-delay-1">
       <div class="about-card">
         <div class="ac-icon ic-violet"><i class="fas fa-robot"></i></div>
         <div class="ac-text">
@@ -568,7 +557,7 @@
     </p>
     <div class="contact-email-wrap">
       <a href="mailto:dikshaverma235@gmail.com" class="contact-email">
-        <i class="fas fa-envelope" style="color:var(--emerald);"></i>
+        <i class="fas fa-envelope" style="color:var(--violet);"></i>
         dikshaverma235@gmail.com
       </a>
     </div>
@@ -580,10 +569,10 @@
         <i class="fab fa-github"></i> GitHub
       </a>
       <a href="tel:+13528717492" class="c-social">
-        <i class="fas fa-phone" style="color:var(--emerald);"></i> +1 (352) 871-7492
+        <i class="fas fa-phone" style="color:var(--emerald-lt);"></i> +1 (352) 871-7492
       </a>
       <button class="c-social" data-open-resume style="font-family:inherit;font-size:.84rem;cursor:pointer;">
-        <i class="fas fa-file-alt" style="color:var(--gold);"></i> View Resume
+        <i class="fas fa-file-alt" style="color:var(--gold-lt);"></i> View Resume
       </button>
     </div>
   </div>
@@ -602,9 +591,7 @@
   </div>
 </footer>
 
-<!-- ══════════════════════════════════════
-     BACK TO TOP
-══════════════════════════════════════ -->
+<!-- Back to top -->
 <button id="back-top" aria-label="Back to top">
   <i class="fas fa-chevron-up"></i>
 </button>
@@ -624,48 +611,48 @@
         <a href="resume.pdf" download class="btn-dl">
           <i class="fas fa-download"></i> Download PDF
         </a>
-        <button class="btn-close" data-close-resume aria-label="Close resume">
+        <button class="btn-close" data-close-resume aria-label="Close">
           <i class="fas fa-times"></i>
         </button>
       </div>
     </div>
 
-    <!-- SUMMARY -->
+    <!-- Summary -->
     <div class="r-section">
       <div class="r-section-title">Professional Summary</div>
-      <p style="font-size:.82rem;color:var(--muted);line-height:1.7;">
+      <p style="font-size:.82rem;color:#475569;line-height:1.72;">
         AI-native Technical Product Manager with 5+ years spanning full-stack engineering, data platform ownership, and enterprise AI product strategy. Deep hands-on experience shipping GenAI copilots, data observability platforms, and LLM-powered workflows at scale. Proven record owning 0→1 product builds, leading cross-functional execution across engineering, data science, and design, and translating ambiguous AI capabilities into measurable business outcomes.
       </p>
     </div>
 
-    <!-- SKILLS -->
+    <!-- Skills -->
     <div class="r-section">
       <div class="r-section-title">Skills</div>
       <div style="display:flex;flex-direction:column;gap:.5rem;">
         <div style="display:flex;gap:.5rem;flex-wrap:wrap;align-items:baseline;">
-          <span class="r-skill-label">AI &amp; ML:</span>
-          <span class="r-skill-val">LLMs · GenAI Agents · RAG Pipelines · Prompt Engineering · NLP · LangChain · TensorFlow · Responsible AI · MLOps</span>
+          <span style="font-size:.78rem;font-weight:700;color:#0f172a;min-width:90px;">AI &amp; ML:</span>
+          <span style="font-size:.78rem;color:#475569;">LLMs · GenAI Agents · RAG Pipelines · Prompt Engineering · NLP · LangChain · TensorFlow · Responsible AI · MLOps</span>
         </div>
         <div style="display:flex;gap:.5rem;flex-wrap:wrap;align-items:baseline;">
-          <span class="r-skill-label">Platform:</span>
-          <span class="r-skill-val">AWS (QuickSight, S3, Lambda) · GCP · Kubernetes · CI/CD · PostgreSQL · Redis · Neptune · SPARQL · Airflow</span>
+          <span style="font-size:.78rem;font-weight:700;color:#0f172a;min-width:90px;">Platform:</span>
+          <span style="font-size:.78rem;color:#475569;">AWS (QuickSight, S3, Lambda) · GCP · Kubernetes · CI/CD · PostgreSQL · Redis · Neptune · SPARQL · Airflow</span>
         </div>
         <div style="display:flex;gap:.5rem;flex-wrap:wrap;align-items:baseline;">
-          <span class="r-skill-label">Product:</span>
-          <span class="r-skill-val">Roadmapping · RICE/ICE · OKRs/KPIs · Agile/Scrum · Product Discovery · Go-to-Market · Data Governance</span>
+          <span style="font-size:.78rem;font-weight:700;color:#0f172a;min-width:90px;">Product:</span>
+          <span style="font-size:.78rem;color:#475569;">Roadmapping · RICE/ICE · OKRs/KPIs · Agile/Scrum · Product Discovery · Go-to-Market · Data Governance</span>
         </div>
         <div style="display:flex;gap:.5rem;flex-wrap:wrap;align-items:baseline;">
-          <span class="r-skill-label">Engineering:</span>
-          <span class="r-skill-val">Python · TypeScript · Node.js · React · SQL · REST APIs · GraphQL · Docker · Git</span>
+          <span style="font-size:.78rem;font-weight:700;color:#0f172a;min-width:90px;">Engineering:</span>
+          <span style="font-size:.78rem;color:#475569;">Python · TypeScript · Node.js · React · SQL · REST APIs · GraphQL · Docker · Git</span>
         </div>
         <div style="display:flex;gap:.5rem;flex-wrap:wrap;align-items:baseline;">
-          <span class="r-skill-label">Tools:</span>
-          <span class="r-skill-val">Jira · Confluence · Figma · Vercel · Stripe · Datadog · WIZ · Cursor · VSCode</span>
+          <span style="font-size:.78rem;font-weight:700;color:#0f172a;min-width:90px;">Tools:</span>
+          <span style="font-size:.78rem;color:#475569;">Jira · Confluence · Figma · Vercel · Stripe · Datadog · WIZ · Cursor · VSCode</span>
         </div>
       </div>
     </div>
 
-    <!-- EXPERIENCE -->
+    <!-- Experience -->
     <div class="r-section">
       <div class="r-section-title">Work Experience</div>
 
@@ -679,14 +666,14 @@
           <span class="r-dates">Feb 2024 – Present</span>
         </div>
         <ul class="r-bullets">
-          <li>Owned end-to-end product strategy for enterprise GenAI copilot (RAG + agentic workflows); drove <strong>27% growth</strong> in AI adoption across 10,000+ users.</li>
-          <li>Led BI stack migration to AWS QuickSight across 6 teams; cut infrastructure costs <strong>55%</strong> with zero-downtime rollout meeting SOC2.</li>
-          <li>Drove <strong>22% lift in product adoption</strong> by redesigning UX and reducing time-to-value from 3 weeks to under 5 days.</li>
+          <li>Owned end-to-end product strategy for enterprise GenAI copilot (RAG + agentic); drove <strong>27% growth in AI adoption</strong> across 10,000+ users.</li>
+          <li>Led BI stack migration to AWS QuickSight across 6 teams; cut infrastructure costs <strong>55%</strong> with zero-downtime rollout, SOC2-compliant.</li>
+          <li>Drove <strong>22% lift in product adoption</strong> by redesigning UX; reduced time-to-value from 3 weeks to under 5 days.</li>
           <li>Defined product vision, OKRs, and prioritization framework for enterprise reporting and AI transparency initiatives.</li>
           <li>Led company-wide AI enablement programs; embedded responsible AI guardrails with legal and security teams.</li>
         </ul>
         <div class="r-role-row" style="margin-top:.75rem;">
-          <span class="r-role" style="color:var(--sky);">Full Stack Engineer</span>
+          <span class="r-role" style="color:#0369a1;">Full Stack Engineer</span>
           <span class="r-dates">Aug 2023 – Feb 2024</span>
         </div>
         <ul class="r-bullets">
@@ -705,15 +692,15 @@
           <span class="r-dates">Mar 2022 – Aug 2023</span>
         </div>
         <ul class="r-bullets">
-          <li>Designed and shipped 0→1 career exploration platform for high school students (React + Node.js + MongoDB + AI).</li>
-          <li>Pilot showed <strong>8% improvement</strong> in career pathway awareness; findings drove next-sprint prioritization.</li>
+          <li>Shipped 0→1 career exploration platform (React + Node.js + MongoDB + AI) for high school students.</li>
+          <li>Pilot showed <strong>8% improvement</strong> in career pathway awareness; drove next-sprint feature prioritization.</li>
         </ul>
         <div class="r-role-row" style="margin-top:.75rem;">
-          <span class="r-role" style="color:var(--sky);">Enterprise SWE — Observability</span>
+          <span class="r-role" style="color:#0369a1;">Enterprise SWE — Observability</span>
           <span class="r-dates">Jan 2022 – May 2022</span>
         </div>
         <ul class="r-bullets">
-          <li>Built OpenTelemetry-based distributed tracing system; outputs directly informed SLO/SLA frameworks for platform teams.</li>
+          <li>Built OpenTelemetry distributed tracing system; outputs directly informed platform team SLO/SLA frameworks.</li>
         </ul>
       </div>
 
@@ -727,8 +714,8 @@
           <span class="r-dates">May 2022 – Dec 2022</span>
         </div>
         <ul class="r-bullets">
-          <li>Migrated backend GraphQL/TS to Nest.js, improving API consistency and reducing downstream integration bugs.</li>
-          <li>Authored architecture docs adopted as onboarding standard, eliminating <strong>35%</strong> of recurring training sessions.</li>
+          <li>Migrated backend from GraphQL/TS to Nest.js; improved API consistency, reduced downstream integration bugs.</li>
+          <li>Authored architecture docs eliminating <strong>35% of recurring onboarding training sessions</strong>.</li>
         </ul>
       </div>
 
@@ -742,13 +729,13 @@
           <span class="r-dates">Jan 2020 – Jul 2021</span>
         </div>
         <ul class="r-bullets">
-          <li>Led 0→1 NLP-powered conversational AI chatbot (Dialogflow); reduced support queries by <strong>34% post-launch</strong>.</li>
-          <li>Built React + Material UI analytics dashboards with real-time data visualizations and REST API integrations.</li>
+          <li>Led 0→1 NLP-powered AI chatbot (Dialogflow); reduced support queries by <strong>34% post-launch</strong>.</li>
+          <li>Built React + Material UI analytics dashboards with real-time data visualizations.</li>
         </ul>
       </div>
     </div>
 
-    <!-- EDUCATION -->
+    <!-- Education -->
     <div class="r-section">
       <div class="r-section-title">Education</div>
       <div class="r-edu-row">
