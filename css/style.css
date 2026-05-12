@@ -3,8 +3,8 @@
 ═══════════════════════════════════════ */
 :root {
   --bg:      #ffffff;
-  --bg2:     #f8fafc;
-  --bg3:     #f1f5f9;
+  --bg2:     #fafafa;
+  --bg3:     #f5f5f5;
   --card:    #ffffff;
 
   --violet:    #7c3aed;
@@ -123,14 +123,8 @@ nav.scrolled {
   background: #fff;
   position: relative; overflow: hidden;
 }
-.hero-gradient {
-  position: absolute; inset: 0; z-index: 1; pointer-events: none;
-  background:
-    radial-gradient(ellipse 70% 55% at 50% -5%, rgba(124,58,237,.09) 0%, transparent 60%),
-    radial-gradient(ellipse 50% 40% at 88% 80%, rgba(217,119,6,.07) 0%, transparent 55%),
-    radial-gradient(ellipse 40% 35% at 12% 80%, rgba(4,120,87,.06) 0%, transparent 55%);
-  animation: meshPulse 10s ease-in-out infinite alternate;
-}
+/* hero-gradient intentionally clear — white background */
+.hero-gradient { display: none; }
 
 .hero-inner { position: relative; z-index: 2; max-width: 880px; }
 

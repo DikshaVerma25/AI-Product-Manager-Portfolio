@@ -184,7 +184,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
       top:            `${def.y}vh`,
       fontSize:       `${def.s}px`,
       color:          def.c,
-      opacity:        '0.048',
+      opacity:        '0.032',
       pointerEvents:  'none',
       zIndex:         '0',
       animation:      `${def.a} ${def.d}s ease-in-out infinite`,
@@ -195,13 +195,3 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
   });
 })();
 
-/* ════════════════════════════════════════
-   COMPANY LOGO FALLBACK
-════════════════════════════════════════ */
-document.querySelectorAll('.tl-logo-img').forEach(img => {
-  img.addEventListener('error', function () {
-    this.style.display = 'none';
-    const fb = this.nextElementSibling;
-    if (fb) fb.style.display = 'flex';
-  });
-});
