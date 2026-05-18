@@ -157,22 +157,22 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
 
   // x/y in vw/vh, size in px, opacity on white bg
   const icons = [
-    { i:'fa-robot',         c:'#7c3aed', s:62, x:3,  y:10, a:'floatA', d:8,   dl:0    },
-    { i:'fa-brain',         c:'#d97706', s:50, x:88, y:8,  a:'floatB', d:10,  dl:-1.5 },
-    { i:'fa-microchip',     c:'#047857', s:54, x:20, y:72, a:'floatC', d:9,   dl:-3   },
-    { i:'fa-database',      c:'#0369a1', s:46, x:80, y:62, a:'floatA', d:12,  dl:-0.5 },
-    { i:'fa-code-branch',   c:'#b91c1c', s:56, x:47, y:4,  a:'floatD', d:7,   dl:-2   },
-    { i:'fa-chart-line',    c:'#7c3aed', s:42, x:14, y:38, a:'floatB', d:11,  dl:-4   },
-    { i:'fa-leaf',          c:'#047857', s:66, x:85, y:42, a:'floatA', d:9,   dl:-1   },
-    { i:'fa-lightbulb',     c:'#d97706', s:50, x:62, y:82, a:'floatC', d:8,   dl:-6   },
-    { i:'fa-rocket',        c:'#7c3aed', s:54, x:35, y:88, a:'floatB', d:13,  dl:-2.5 },
-    { i:'fa-cog',           c:'#94a3b8', s:44, x:72, y:18, a:'floatD', d:15,  dl:-3.5 },
-    { i:'fa-layer-group',   c:'#0369a1', s:42, x:8,  y:55, a:'floatA', d:10,  dl:-5   },
-    { i:'fa-seedling',      c:'#047857', s:56, x:52, y:50, a:'floatC', d:7.5, dl:-0.5 },
-    { i:'fa-star',          c:'#d97706', s:38, x:93, y:78, a:'floatB', d:9,   dl:-7   },
-    { i:'fa-infinity',      c:'#7c3aed', s:62, x:28, y:22, a:'floatA', d:11,  dl:-1.5 },
-    { i:'fa-network-wired', c:'#0369a1', s:46, x:60, y:28, a:'floatD', d:8,   dl:-4.5 },
-    { i:'fa-bolt',          c:'#b91c1c', s:40, x:2,  y:84, a:'floatC', d:12,  dl:-2   },
+    { i:'fa-robot',         c:'#A0304E', s:62, x:3,  y:10, a:'floatA', d:8,   dl:0    },
+    { i:'fa-brain',         c:'#C07C2A', s:50, x:88, y:8,  a:'floatB', d:10,  dl:-1.5 },
+    { i:'fa-microchip',     c:'#4A6741', s:54, x:20, y:72, a:'floatC', d:9,   dl:-3   },
+    { i:'fa-database',      c:'#2C4A38', s:46, x:80, y:62, a:'floatA', d:12,  dl:-0.5 },
+    { i:'fa-code-branch',   c:'#D4758C', s:56, x:47, y:4,  a:'floatD', d:7,   dl:-2   },
+    { i:'fa-chart-line',    c:'#A0304E', s:42, x:14, y:38, a:'floatB', d:11,  dl:-4   },
+    { i:'fa-leaf',          c:'#4A6741', s:66, x:85, y:42, a:'floatA', d:9,   dl:-1   },
+    { i:'fa-lightbulb',     c:'#C07C2A', s:50, x:62, y:82, a:'floatC', d:8,   dl:-6   },
+    { i:'fa-rocket',        c:'#A0304E', s:54, x:35, y:88, a:'floatB', d:13,  dl:-2.5 },
+    { i:'fa-cog',           c:'#9A8070', s:44, x:72, y:18, a:'floatD', d:15,  dl:-3.5 },
+    { i:'fa-layer-group',   c:'#2C4A38', s:42, x:8,  y:55, a:'floatA', d:10,  dl:-5   },
+    { i:'fa-seedling',      c:'#4A6741', s:56, x:52, y:50, a:'floatC', d:7.5, dl:-0.5 },
+    { i:'fa-star',          c:'#C07C2A', s:38, x:93, y:78, a:'floatB', d:9,   dl:-7   },
+    { i:'fa-infinity',      c:'#A0304E', s:62, x:28, y:22, a:'floatA', d:11,  dl:-1.5 },
+    { i:'fa-network-wired', c:'#2C4A38', s:46, x:60, y:28, a:'floatD', d:8,   dl:-4.5 },
+    { i:'fa-bolt',          c:'#D4758C', s:40, x:2,  y:84, a:'floatC', d:12,  dl:-2   },
   ];
 
   icons.forEach(def => {
