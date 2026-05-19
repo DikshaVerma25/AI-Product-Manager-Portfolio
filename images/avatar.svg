@@ -1,0 +1,166 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+  <defs>
+    <clipPath id="clip">
+      <circle cx="200" cy="200" r="192"/>
+    </clipPath>
+    <linearGradient id="bg-g" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FEF1F5"/>
+      <stop offset="100%" stop-color="#F2F6EF"/>
+    </linearGradient>
+    <linearGradient id="skin-g" x1="20%" y1="0%" x2="80%" y2="100%">
+      <stop offset="0%" stop-color="#CEAA72"/>
+      <stop offset="100%" stop-color="#AC7C3C"/>
+    </linearGradient>
+    <linearGradient id="shirt-g" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#922238"/>
+      <stop offset="100%" stop-color="#6A1825"/>
+    </linearGradient>
+  </defs>
+
+  <g clip-path="url(#clip)">
+    <!-- Background -->
+    <rect width="400" height="400" fill="url(#bg-g)"/>
+
+    <!-- Subtle radial glow behind figure -->
+    <ellipse cx="200" cy="280" rx="160" ry="120" fill="#FBE8EE" opacity="0.55"/>
+
+    <!-- ── CLOTHING ── -->
+    <path d="M0 400 L32 338 Q96 304 200 298 Q304 304 368 338 L400 400Z" fill="url(#shirt-g)"/>
+    <!-- Shoulder depth -->
+    <path d="M32 338 Q96 304 158 302 Q96 316 48 360Z" fill="#5A1420" opacity="0.35"/>
+    <path d="M368 338 Q304 304 242 302 Q304 316 352 360Z" fill="#5A1420" opacity="0.35"/>
+    <!-- Block-print circle motifs -->
+    <circle cx="118" cy="348" r="5"   fill="#C84060" opacity="0.52"/>
+    <circle cx="140" cy="366" r="3.8" fill="#C84060" opacity="0.44"/>
+    <circle cx="162" cy="344" r="3.2" fill="#C84060" opacity="0.48"/>
+    <circle cx="112" cy="328" r="2.8" fill="#C84060" opacity="0.38"/>
+    <circle cx="248" cy="346" r="5"   fill="#C84060" opacity="0.52"/>
+    <circle cx="270" cy="364" r="3.8" fill="#C84060" opacity="0.44"/>
+    <circle cx="294" cy="342" r="3.2" fill="#C84060" opacity="0.48"/>
+    <circle cx="252" cy="324" r="2.8" fill="#C84060" opacity="0.38"/>
+    <path d="M193 332 L200 326 L207 332 L200 338Z" fill="#C84060" opacity="0.42"/>
+    <!-- Neckline -->
+    <path d="M173 300 Q200 282 227 300 Q212 272 200 268 Q188 272 173 300Z" fill="#A02840"/>
+    <path d="M180 298 Q200 288 220 298" stroke="#C84868" stroke-width="1.8" fill="none" opacity="0.5"/>
+
+    <!-- ── NECK ── -->
+    <path d="M180 250 L178 302 Q200 310 222 302 L220 250 Q200 260 180 250Z" fill="url(#skin-g)"/>
+    <path d="M180 250 Q200 266 220 250 Q210 262 200 262 Q190 262 180 250Z" fill="#8A6030" opacity="0.18"/>
+
+    <!-- ── HAIR — back/sides (drawn before face) ── -->
+    <ellipse cx="200" cy="176" rx="116" ry="126" fill="#0C0400"/>
+    <!-- Long side falls -->
+    <path d="M84 166 Q73 228 77 302 Q81 342 90 392 Q108 340 108 268 Q110 206 104 166Z" fill="#0C0400"/>
+    <path d="M316 166 Q327 228 323 302 Q319 342 310 392 Q292 340 292 268 Q290 206 296 166Z" fill="#0C0400"/>
+    <!-- Subtle highlight streak -->
+    <path d="M200 80 Q228 92 244 114 Q226 90 200 84Z" fill="#2C1A0A" opacity="0.45"/>
+
+    <!-- ── FACE ── -->
+    <ellipse cx="200" cy="204" rx="90" ry="108" fill="url(#skin-g)"/>
+    <!-- Contouring -->
+    <ellipse cx="140" cy="232" rx="25" ry="35" fill="#8A6030" opacity="0.08"/>
+    <ellipse cx="260" cy="232" rx="25" ry="35" fill="#8A6030" opacity="0.08"/>
+    <!-- Forehead highlight -->
+    <ellipse cx="200" cy="148" rx="40" ry="22" fill="#DEBA88" opacity="0.22"/>
+
+    <!-- ── HAIRLINE (front, over face) ── -->
+    <path d="M110 168 Q134 122 168 108 Q184 102 200 100 Q216 102 232 108 Q266 122 290 168 Q272 140 252 124 Q230 112 200 108 Q170 112 148 124 Q128 140 110 168Z" fill="#0C0400"/>
+
+    <!-- ── EARS ── -->
+    <ellipse cx="110" cy="210" rx="13" ry="19" fill="url(#skin-g)"/>
+    <ellipse cx="290" cy="210" rx="13" ry="19" fill="url(#skin-g)"/>
+    <ellipse cx="112" cy="210" rx="8"  ry="13" fill="#8A6030" opacity="0.26"/>
+    <ellipse cx="288" cy="210" rx="8"  ry="13" fill="#8A6030" opacity="0.26"/>
+    <!-- Gold earrings (3-layer stud) -->
+    <circle cx="110" cy="230" r="8"   fill="#C07C2A"/>
+    <circle cx="110" cy="230" r="5"   fill="#E0A840"/>
+    <circle cx="110" cy="230" r="2.2" fill="#F5C860"/>
+    <circle cx="290" cy="230" r="8"   fill="#C07C2A"/>
+    <circle cx="290" cy="230" r="5"   fill="#E0A840"/>
+    <circle cx="290" cy="230" r="2.2" fill="#F5C860"/>
+
+    <!-- ── EYEBROWS (full, slightly arched) ── -->
+    <path d="M148 172 Q165 163 184 167" stroke="#0C0400" stroke-width="6"   fill="none" stroke-linecap="round"/>
+    <path d="M216 167 Q235 163 252 172" stroke="#0C0400" stroke-width="6"   fill="none" stroke-linecap="round"/>
+
+    <!-- ── EYES ── -->
+    <!-- Left -->
+    <ellipse cx="166" cy="191" rx="20" ry="15" fill="white"/>
+    <circle  cx="166" cy="191" r="12"          fill="#1C0800"/>
+    <circle  cx="166" cy="191" r="7.5"         fill="#0C0400"/>
+    <circle  cx="170.5" cy="186.5" r="5"       fill="white" opacity="0.9"/>
+    <circle  cx="162"   cy="195"   r="1.8"     fill="white" opacity="0.35"/>
+    <path d="M146 187 Q166 177 186 187" stroke="#0C0400" stroke-width="4"   fill="none" stroke-linecap="round"/>
+    <path d="M148 200 Q166 206 184 200" stroke="#6A3818" stroke-width="1.8" fill="none" stroke-linecap="round" opacity="0.36"/>
+    <!-- Right -->
+    <ellipse cx="234" cy="191" rx="20" ry="15" fill="white"/>
+    <circle  cx="234" cy="191" r="12"          fill="#1C0800"/>
+    <circle  cx="234" cy="191" r="7.5"         fill="#0C0400"/>
+    <circle  cx="238.5" cy="186.5" r="5"       fill="white" opacity="0.9"/>
+    <circle  cx="230"   cy="195"   r="1.8"     fill="white" opacity="0.35"/>
+    <path d="M214 187 Q234 177 254 187" stroke="#0C0400" stroke-width="4"   fill="none" stroke-linecap="round"/>
+    <path d="M216 200 Q234 206 252 200" stroke="#6A3818" stroke-width="1.8" fill="none" stroke-linecap="round" opacity="0.36"/>
+
+    <!-- ── NOSE ── -->
+    <path d="M194 200 Q200 222 206 200" stroke="#9A7040" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+    <ellipse cx="200" cy="236" rx="13" ry="8" fill="#9A7040" opacity="0.2"/>
+    <path d="M183 234 Q190 243 197 239" stroke="#8A5C28" stroke-width="2.2" fill="none" stroke-linecap="round" opacity="0.52"/>
+    <path d="M217 234 Q210 243 203 239" stroke="#8A5C28" stroke-width="2.2" fill="none" stroke-linecap="round" opacity="0.52"/>
+
+    <!-- ── SMILE (big, bright) ── -->
+    <!-- Upper lip curve -->
+    <path d="M164 256 Q182 248 200 251 Q218 248 236 256" stroke="#7A2830" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+    <!-- Main arc -->
+    <path d="M161 259 Q200 306 239 259" stroke="#7A2830" stroke-width="4.5" fill="none" stroke-linecap="round"/>
+    <!-- Teeth -->
+    <path d="M167 262 Q200 299 233 262 Q216 302 200 303 Q184 302 167 262Z" fill="white"/>
+    <line x1="200" y1="262" x2="200" y2="300" stroke="#DDCBBA" stroke-width="1.2"/>
+    <!-- Lower lip -->
+    <path d="M170 299 Q185 312 200 313 Q215 312 230 299" stroke="#7A2830" stroke-width="1.8" fill="none" opacity="0.45"/>
+    <path d="M175 300 Q200 313 225 300 Q215 309 200 310 Q185 309 175 300Z" fill="#C09080" opacity="0.22"/>
+
+    <!-- ── CHEEK BLUSH ── -->
+    <ellipse cx="140" cy="250" rx="30" ry="20" fill="#E07858" opacity="0.14"/>
+    <ellipse cx="260" cy="250" rx="30" ry="20" fill="#E07858" opacity="0.14"/>
+
+    <!-- ── BINDI ── -->
+    <circle cx="200" cy="156" r="4.5" fill="#A0304E" opacity="0.62"/>
+
+    <!-- ══ FLORAL DECORATIONS — nature-loving personality ══ -->
+    <!-- Top-left: bougainvillea cluster + leaves -->
+    <ellipse cx="44"  cy="124" rx="11" ry="22" fill="#4A6741" transform="rotate(28 44 124)"   opacity="0.82"/>
+    <ellipse cx="25"  cy="108" rx="9"  ry="18" fill="#3A5233" transform="rotate(-8 25 108)"   opacity="0.74"/>
+    <ellipse cx="62"  cy="138" rx="8"  ry="14" fill="#4A6741" transform="rotate(50 62 138)"   opacity="0.68"/>
+    <!-- Big flower -->
+    <circle cx="68" cy="78" r="10" fill="#C9587A" opacity="0.68"/><!-- petal -->
+    <circle cx="54" cy="68" r="9"  fill="#C9587A" opacity="0.64"/>
+    <circle cx="80" cy="65" r="8"  fill="#D4758C" opacity="0.68"/>
+    <circle cx="48" cy="88" r="8"  fill="#C9587A" opacity="0.60"/>
+    <circle cx="68" cy="78" r="20" fill="#A0304E" opacity="0.80"/><!-- main bloom -->
+    <circle cx="47" cy="66" r="14" fill="#D4758C" opacity="0.76"/>
+    <circle cx="80" cy="62" r="11" fill="#C07C2A" opacity="0.80"/>
+    <circle cx="42" cy="92" r="11" fill="#A0304E" opacity="0.70"/>
+    <!-- Flower centre -->
+    <circle cx="68" cy="78" r="9"  fill="#E0A040"/>
+    <circle cx="68" cy="78" r="4.5" fill="#F5C860"/>
+
+    <!-- Top-right: moss + rose cluster -->
+    <ellipse cx="356" cy="118" rx="11" ry="22" fill="#4A6741" transform="rotate(-28 356 118)"  opacity="0.82"/>
+    <ellipse cx="375" cy="102" rx="9"  ry="18" fill="#3A5233" transform="rotate(8 375 102)"    opacity="0.74"/>
+    <ellipse cx="338" cy="132" rx="8"  ry="14" fill="#4A6741" transform="rotate(-50 338 132)"  opacity="0.68"/>
+    <!-- Flower -->
+    <circle cx="338" cy="72" r="9"  fill="#C9587A" opacity="0.64"/>
+    <circle cx="356" cy="64" r="8"  fill="#D4758C" opacity="0.68"/>
+    <circle cx="366" cy="80" r="9"  fill="#C9587A" opacity="0.62"/>
+    <circle cx="345" cy="74" r="18" fill="#D4758C" opacity="0.78"/>
+    <circle cx="364" cy="64" r="12" fill="#A0304E" opacity="0.76"/>
+    <circle cx="328" cy="67" r="10" fill="#C07C2A" opacity="0.78"/>
+    <!-- Centre -->
+    <circle cx="345" cy="74" r="8"  fill="#E0A040"/>
+    <circle cx="345" cy="74" r="4"  fill="#F5C860"/>
+
+    <!-- ── BORDER RING (inside clip) ── -->
+    <circle cx="200" cy="200" r="190" fill="none" stroke="#A0304E"            stroke-width="4"/>
+    <circle cx="200" cy="200" r="185" fill="none" stroke="rgba(160,48,78,.18)" stroke-width="2"/>
+  </g>
+</svg>
